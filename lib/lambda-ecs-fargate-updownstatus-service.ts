@@ -18,7 +18,7 @@ export class LambdaEcsFargateUpDownService extends core.Construct {
     super(scope, id);
 
     const serverStatusHandler = new lambdanodejs.NodejsFunction(this, "serverStatus", {
-      runtime: lambda.Runtime.NODEJS_10_X, // So we can use async 
+      runtime: lambda.Runtime.NODEJS_14_X, // So we can use async
       entry: 'resources/serverstatus.ts',
       handler: "handler",
       bundling: {
@@ -47,7 +47,7 @@ export class LambdaEcsFargateUpDownService extends core.Construct {
     serverStatusHandler.role?.attachInlinePolicy(ecsStatusPolicy);
 
     const startStopHandler = new lambdanodejs.NodejsFunction(this, "startstop", {
-      runtime: lambda.Runtime.NODEJS_10_X, // So we can use async 
+      runtime: lambda.Runtime.NODEJS_14_X, // So we can use async
       entry: 'resources/startstopserver.ts',
       handler: "handler",
       bundling: {
